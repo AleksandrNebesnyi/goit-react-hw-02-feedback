@@ -3,6 +3,7 @@
 import Section from "./Section/Section.jsx";
 import Statistics from "./Statistics/Statistics.jsx";
 import {Component} from 'react';
+import CreatefeedbackButton from "./CreateFeedbackButton/CreateFeedbackButton.jsx";
 
 
 class App extends Component {
@@ -11,6 +12,14 @@ state ={
   neutral :0,
   bad:0,
 }
+handleClickButton = event => {
+  const keyName = event.currentTarget.name;
+  this.setState(prevState => {
+    return {
+      [keyName]: prevState[keyName] + 1,
+    };
+  });
+};
 
 countTotalFeedback =()=>{
   const {good, neutral, bad } = this.state;
@@ -19,6 +28,7 @@ countTotalFeedback =()=>{
 
 countPositiveFeedbackPercentage=()=>{
   const { good } = this.state;
+  if(good ===0) return 0;
   return Math.floor((good / this.countTotalFeedback()) * 100);
 }
 
@@ -29,15 +39,26 @@ countPositiveFeedbackPercentage=()=>{
     return (
       <>
   
-            <Section title = "ksgksdfgk"/>
-            <Section title="Statistics"/>
+  <Section title="Please Leave Feedback">
+          <CreatefeedbackButton 
+          good = 'good'
+          neutral='neutral'
+          bad='bad'
+          clickButtonFeedback ={this.handleClickButton}
+          
+          />
+        </Section>
+
+            <Section title="Statistics">
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
-              total={this.countTotalFeedback} // Передаем в компонент статистики подсчет всех отзывов
-              positivePercentage={this.countPositiveFeedbackPercentage} // Туда же передаем подсчет хороших отзывов
+              total={this.countTotalFeedback}
+              positivePercentage={this.countPositiveFeedbackPercentage}
             />
+          </Section>
+            
         
      
    </>
