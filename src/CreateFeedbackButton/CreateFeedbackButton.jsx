@@ -13,7 +13,8 @@ render()
     const { good, neutral, bad, clickButtonFeedback } = this.props;
 return ( 
     
-    <div>
+    <ul  className ={s.list}>
+        <li className ={s.item}>
         <button 
          className ={s.button}
          type= "button"
@@ -21,7 +22,8 @@ return (
          onClick = {clickButtonFeedback}   > 
            {good}
         </button>
-
+        </li>
+        <li className ={s.item}>
         <button
           className ={s.button}
           type= "button"
@@ -30,7 +32,8 @@ return (
         >
           { neutral}
         </button>
-
+        </li>
+        <li className ={s.item}>
         <button 
           className ={s.button}
           type= "button"
@@ -39,19 +42,21 @@ return (
         >
           {bad}
         </button>
+        </li>
 
+       
 
-    </div>
+       
+    </ul>
     )
   
 }
 }
 
 CreatefeedbackButton.propTypes = {
-good:PropTypes.number,
-neutral:PropTypes.number,
-bad:PropTypes.number,
-total:PropTypes.func,
+good:PropTypes.string,
+neutral:PropTypes.string,
+bad:PropTypes.string,
 clickButtonFeedback:PropTypes.func,
 
 }

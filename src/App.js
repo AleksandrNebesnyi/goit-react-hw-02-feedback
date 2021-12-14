@@ -1,5 +1,4 @@
 
-
 import Section from "./Section/Section.jsx";
 import Statistics from "./Statistics/Statistics.jsx";
 import {Component} from 'react';
@@ -13,17 +12,20 @@ state ={
   bad:0,
 }
 handleClickButton = event => {
-  const keyName = event.currentTarget.name;
+  const keyName = event.target.name;
+  
+ 
   this.setState(prevState => {
     return {
       [keyName]: prevState[keyName] + 1,
-    };
+     };
   });
+ 
 };
 
 countTotalFeedback =()=>{
-  const {good, neutral, bad } = this.state;
-  return good+neutral+bad;
+    return Object.values(this.state).reduce((acc, current) => acc+current, 0);
+  
 }
 
 countPositiveFeedbackPercentage=()=>{
