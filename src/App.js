@@ -60,7 +60,7 @@ class App extends Component {
               positivePercentage={countPositiveFeedbackPercentage}
             />
           ) : (
-            ''
+            <p>No feedback given</p>
           )}
         </Section>
       </>
